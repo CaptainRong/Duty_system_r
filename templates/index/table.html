@@ -1,0 +1,85 @@
+{% if msg %}
+    <div class="alert alert-danger m-2" role="alert">
+        {{ msg }}
+    </div>
+{% endif %}
+
+<div class="row m-0">
+    <form method="post" action="{% url 'index' %}" class="row row-cols-lg-auto align-items-center m-2">
+        {% csrf_token %}
+        <div class="col-12">
+            <label class="visually-hidden" for="inlineFormInputGroupUsername">开始日期</label>
+            <div class="input-group">
+                <div class="input-group-text">开始日期</div>
+                <input type="date" required name="date_start" value="{{ date_start_f }}" class="form-control"
+                       id="inlineFormInputGroupUsername"
+                       placeholder="开始日期">
+            </div>
+        </div>
+        <div class="col-12">
+            <label class="visually-hidden" for="inlineFormInputGroupUsername">结束日期</label>
+            <div class="input-group">
+                <div class="input-group-text">结束日期</div>
+                <input type="date" required name="date_end" value="{{ date_end_f }}" class="form-control"
+                       id="inlineFormInputGroupUsername"
+                       placeholder="结束日期">
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-calendar-check"></i>
+                生成值班表
+            </button>
+        </div>
+        {% if data %}
+
+            <div class="col-12">
+                <a class="btn btn-primary"
+                   href="{% url 'download' %}?list={{ data }}&date_s={{ date_start_f }}&date_e={{ date_end_f }}">
+                    <i class="bi-alarm bi-filetype-xlsx"></i>
+                    导出
+                </a>
+            </div>
+        {% endif %}
+    </form>
+
+    {% if data %}
+
+
+        <div class="row-12">
+            <table class="table table-striped">
+                <thead>
+                <tr class="table-active">
+                    <th scope="col">日期</th>
+                    <th scope="col">白班</th>
+                    <th scope="col">白班带班</th>
+                    <th scope="col">白班保安</th>
+                    <th scope="col">晚班</th>
+                    <th scope="col">晚班带班</th>
+                    <th scope="col">晚班保安</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in data %}
+                    <tr>
+                        {#                        <th scope="row">{{ forloop.counter }}</th>#}
+
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.bai_ban.ban_yuan.name }}</td>
+                        <td>{{ item.bai_ban.dai_ban.name }}</td>
+                        <td>{{ item.bao_an_1.name }}</td>
+                        <td>{{ item.wan_ban.ban_yuan.name }}</td>
+                        <td>{{ item.wan_ban.dai_ban.name }}</td>
+                        <td>{{ item.bao_an_2.name }}</td>
+
+
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+

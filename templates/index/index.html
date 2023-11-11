@@ -1,0 +1,13 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/table.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/bootstrap-icons.css' %}">
+{% endblock %}
+{% block title %}
+    值班管理系统
+{% endblock %}
+{% block body %}
+    {% include "index/navbar.html" %}
+    {% include "index/table.html" %}
+{% endblock %}
