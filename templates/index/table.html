@@ -51,15 +51,13 @@
                 <thead>
                 <tr class="table-active">
                     <th scope="col">日期</th>
-                    <th scope="col">1</th>
-                    <th scope="col">2</th>
-                    <th scope="col">3</th>
-                    <th scope="col">4</th>
-                    <th scope="col">5</th>
-                    <th scope="col">6</th>
+                    <th scope="col">早上</th>
+                    <th scope="col">下午</th>
+                    <th scope="col">晚上</th>
+{#                    <th scope="col">操作</th>#}
                 </tr>
                 </thead>
-                <tbody>
+             .   <tbody>
                 {% for item in data %}
                     <tr>
                         {#                        <th scope="row">{{ forloop.counter }}</th>#}
@@ -67,10 +65,7 @@
                         <td>{{ item.date }}</td>
                         <td>{{ item.bai_ban.ban_yuan.name }}</td>
                         <td>{{ item.bai_ban.dai_ban.name }}</td>
-                        <td>{{ item.bao_an_1.name }}</td>
                         <td>{{ item.wan_ban.ban_yuan.name }}</td>
-                        <td>{{ item.wan_ban.dai_ban.name }}</td>
-                        <td>{{ item.bao_an_2.name }}</td>
 
 
                     </tr>

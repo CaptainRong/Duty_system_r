@@ -123,7 +123,6 @@ def index(request):
         if not bai_ban_list or not wan_ban_list or len(Users_bao_an.objects.all()) > 3:
             msg = "带班人员或值班人员为空(包括值班保安)！"
             return render(request, 'index/index.html', locals())
-        bao_an = list(Users_bao_an.objects.filter(is_active=1).values())
         bai_ban_list = list(np.random.permutation(bai_ban_list))
         wan_ban_list = list(np.random.permutation(wan_ban_list))
         a = 1
@@ -134,8 +133,7 @@ def index(request):
                 bai_ban_list += bai_ban_list
             if len(wan_ban_list) <= i + 1:
                 wan_ban_list += wan_ban_list
-            if len(bao_an) <= i + 2:
-                bao_an += bao_an
+
 
             new_delta = datetime.timedelta(days=1)
 
@@ -143,10 +141,6 @@ def index(request):
             new['bai_ban'] = bai_ban_list[i]
             new['wan_ban'] = wan_ban_list[i]
 
-            new['bao_an_1'] = bao_an[a % 3]
-            a += 1
-            new['bao_an_2'] = bao_an[a % 3]
-            a += 1
             list_he.append(new)
         data = list_he
         return render(request, 'index/index.html', locals())

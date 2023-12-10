@@ -31,30 +31,10 @@ class Users(models.Model):
         # 数据库列表名
         db_table = 'Users'
         # 后台管理名
-        verbose_name_plural = '班员管理'
-        verbose_name = "班员管理"
+        verbose_name_plural = '成员管理'
+        verbose_name = "成员管理"
 
 
-# class Post(models.Model):
-#     id = models.AutoField(verbose_name="id", primary_key=True)
-#     name = models.CharField(verbose_name="职务", max_length=33, default='', null=True)
-#
-#     time = models.DateTimeField(verbose_name="创建日期", auto_now=True)
-#     Active = [
-#         (1, "正常"),
-#         (4, "禁用"),
-#     ]
-#     is_active = models.SmallIntegerField(verbose_name="状态", default=1, choices=Active)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     class Meta:
-#         # 数据库列表名
-#         db_table = 'Post'
-#         # 后台管理名
-#         verbose_name_plural = '职务管理'
-#         verbose_name = "职务管理"
 
 
 class Users_dai_ban(models.Model):
@@ -182,3 +162,27 @@ class Matching(models.Model):
         # 后台管理名
         verbose_name_plural = '值班匹配'
         verbose_name = "值班匹配"
+
+
+
+# class Post(models.Model):
+#     id = models.AutoField(verbose_name="id", primary_key=True)
+#     name = models.CharField(verbose_name="职务", max_length=33, default='', null=True)
+#
+#     time = models.DateTimeField(verbose_name="创建日期", auto_now=True)
+#     Active = [
+#         (1, "正常"),
+#         (4, "禁用"),
+#     ]
+#     is_active = models.SmallIntegerField(verbose_name="状态", default=1, choices=Active)
+#
+#     def __str__(self):
+#         return self.name
+#
+#     class Meta:
+#         # 数据库列表名
+#         db_table = 'Post'
+#         # 后台管理名
+#         verbose_name_plural = '职务管理'
+#         verbose_name = "职务管理"
+
