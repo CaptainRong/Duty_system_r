@@ -42,39 +42,62 @@
             </div>
         {% endif %}
     </form>
-
     {% if data %}
 
-
-        <div class="row-12">
-            <table class="table table-striped">
-                <thead>
-                <tr class="table-active">
-                    <th scope="col">日期</th>
-                    <th scope="col">早上</th>
-                    <th scope="col">下午</th>
-                    <th scope="col">晚上</th>
-{#                    <th scope="col">操作</th>#}
-                </tr>
-                </thead>
-             .   <tbody>
-                {% for item in data %}
-                    <tr>
-                        {#                        <th scope="row">{{ forloop.counter }}</th>#}
-
-                        <td>{{ item.date }}</td>
-                        <td>{{ item.bai_ban.ban_yuan.name }}</td>
-                        <td>{{ item.bai_ban.dai_ban.name }}</td>
-                        <td>{{ item.wan_ban.ban_yuan.name }}</td>
-
-
+        {% if method != 'GET' %}
+            <div class="row-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr class="table-active">
+                        <th scope="col">日期</th>
+                        <th scope="col">早上</th>
+                        <th scope="col">下午</th>
+                        <th scope="col">晚上</th>
+                        {# <th scope="col">操作</th> #}
                     </tr>
-                {% endfor %}
+                    </thead>
+                    <tbody>
+                    {% for date, users in data.items %}
+                        <tr>
+                            {# <th scope="row">{{ forloop.counter }}</th>#}
+                            <td>{{ date }}</td>
+                            {% for na in users %}
+                                <td>{{ na }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
 
 
-                </tbody>
-            </table>
-        </div>
+        {% if method == 'GET' %}
+            <!-- ToDO 1. 美化界面 2. 修改显示数据的逻辑，现在这样怪怪的  12.13-->
+
+            <div class="row-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr class="table-active">
+                        <th scope="col">name</th>
+                        <th scope="col">周数</th>
+                        <th scope="col">时间</th>
+                        <th scope="col">单双周</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in data %}
+                        <tr>
+                            <td>{{ item }}</td>
+                            <td>{{ item.get_work_week_display }}</td>
+                            <td>{{ item.get_work_time_display }}</td>
+                            <td>{{ item.get_oe_week_display }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
     {% endif %}
 </div>
 
