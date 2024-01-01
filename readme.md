@@ -21,4 +21,4 @@ python manage.py createsuperus
 
 
 
-> https://gitee.com/hayratjan/duty-management-system
+> from: https://gitee.com/hayratjan/duty-management-system
